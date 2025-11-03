@@ -1,4 +1,4 @@
-#include "calculator/calculator.hpp"
+#include "../include/calculator/calculator.hpp"
 
 int main() {
   Calculator EdaCalc = Calculator();
