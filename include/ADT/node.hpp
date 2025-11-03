@@ -1,3 +1,6 @@
+#ifndef NODE_HPP
+#define NODE_HPP
+
 #include <string>
 
 enum NodeType {
@@ -24,3 +27,5 @@ public:
     Node(const std::string& str, NodeType t);
 
 };
+
+#endif

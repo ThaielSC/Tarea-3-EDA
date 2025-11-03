@@ -43,15 +43,23 @@ Node* LinkedList::getHead() const {
     return head;
 }
 
-// ----------------------------------------------------------------------
-// display (Opcional, para verificación)
-// ----------------------------------------------------------------------
 void LinkedList::display() const {
     Node* current = head;
     std::cout << "List: ";
     while (current != nullptr) {
-        std::cout << current->data << " -> ";
+        std::cout << current->data << " ";
         current = current->next;
     }
     std::cout << "nullptr" << std::endl;
+}
+
+std::string LinkedList::to_string() const {
+    std::string result;
+    Node* current = head;
+    while (current != nullptr) {
+        result += current->data + " ";
+        current = current->next;
+    }
+    result += "nullptr";
+    return result;
 }

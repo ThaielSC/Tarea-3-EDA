@@ -17,6 +17,7 @@ public:
     bool isEmpty() const;
     Node* getHead() const;
     void display() const; 
+    std::string to_string() const;
 };
 
 #endif
