@@ -121,6 +121,9 @@ LinkedList* ExpressionConverter::toPostfix(const std::vector<Token>& tokens) {
                 delete operatorStack.pop(); 
                 break;
 
+            case TokenType::UNKNOWN:
+                throw std::runtime_error("Error: Carácter o token no válido: '" + token.lexema + "'");
+
             default:
                 // Ignorar o manejar error para tokens desconocidos/EOF_TOKEN
                 break;

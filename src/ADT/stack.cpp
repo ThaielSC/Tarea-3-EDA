@@ -4,13 +4,8 @@ Stack::Stack() : top(nullptr) {};
 
 // Destructor
 Stack::~Stack() {
-    Node* current = top;
-    Node* nextNode = nullptr;
-    while (current != nullptr) {
-        nextNode = current->next;
-        delete current;
-        current = nextNode;
-    }
+    // Los nodos son gestionados por otras estructuras (LinkedList, Tree).
+    // El destructor de la pila no debe liberar esta memoria para evitar doble liberación.
     top = nullptr;
 }
 

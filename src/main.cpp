@@ -1,6 +1,6 @@
 #include "../include/calculator/calculator.hpp"
 
 int main() {
-  Calculator EdaCalc = Calculator();
+  Calculator EdaCalc;
   EdaCalc.run();
 }

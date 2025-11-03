@@ -12,6 +12,10 @@ public:
     // Destructor
     ~LinkedList();
 
+    // Prevent copies to avoid double-free errors
+    LinkedList(const LinkedList&) = delete;
+    LinkedList& operator=(const LinkedList&) = delete;
+
     void append(Node* newNode);
     void prepend(Node* newNode); 
     bool isEmpty() const;

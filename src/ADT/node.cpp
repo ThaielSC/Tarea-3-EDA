@@ -1,10 +1,17 @@
 #include "../../include/ADT/node.hpp"
+#include <sstream> // Include sstream
 
 Node::Node(double val, NodeType t) 
     : type(t), value(val), next(nullptr), left(nullptr), right(nullptr) {
     
     if (t == OPERAND) {
-        data = std::to_string(val); 
+        std::stringstream ss;
+        if (val == static_cast<long long>(val)) {
+            ss << static_cast<long long>(val);
+        } else {
+            ss << val;
+        }
+        data = ss.str();
     } else {
         data = ""; 
     }

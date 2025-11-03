@@ -57,9 +57,11 @@ std::string LinkedList::to_string() const {
     std::string result;
     Node* current = head;
     while (current != nullptr) {
-        result += current->data + " ";
+        result += current->data;
+        if (current->next != nullptr) {
+            result += " ";
+        }
         current = current->next;
     }
-    result += "nullptr";
     return result;
 }
