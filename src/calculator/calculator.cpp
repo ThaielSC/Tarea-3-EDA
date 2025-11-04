@@ -109,11 +109,55 @@ void Calculator::loop() {
 
 
 
-    if (first_token.type == TokenType::SHOW) {
+        if (first_token.type == TokenType::SHOW) {
 
-        stream.write("DEBUG: Comando 'show' detectado. Implementación pendiente.");
 
-        continue;
+
+            if (tokens.size() < 3 || tokens[1].type != TokenType::IDENTIFIER) {
+
+
+
+                stream.write("Uso: show <nombre_variable>");
+
+
+
+            } else {
+
+
+
+                const std::string& var_name = tokens[1].lexema;
+
+
+
+                try {
+
+
+
+                    double value = symbols.get(var_name);
+
+
+
+                    stream.write(var_name + " = " + format_result(value));
+
+
+
+                } catch (const std::runtime_error& e) {
+
+
+
+                    stream.write(e.what());
+
+
+
+                }
+
+
+
+            }
+
+
+
+            continue;
 
     } else if (first_token.type == TokenType::TREE) {
 
@@ -261,35 +305,75 @@ void Calculator::loop() {
 
 
 
-        // 3. Evaluar el árbol
+                // 3. Evaluar el árbol
 
-        double result = evaluator.evaluate(expression_tree);
+
+
+                double result = evaluator.evaluate(expression_tree);
+
+
+
+                
+
+
+
+                // Guardar el resultado en la variable "ans"
+
+
+
+                symbols.set("ans", result);
+
+
 
         
 
-        // --- SUCCESS --- 
 
-        // Only if evaluation is successful, we update the last valid postfix list.
 
-        clearLastPostfixList(); // Delete the old one
-
-        clearLastExpressionTree(); // Clear previous tree
-
-        this->last_postfix_list = postfix_list; // Take ownership of the new one
-
-        this->last_expression_tree = expression_tree; // Store the tree
-
-        this->last_prefix_expr = expression_tree->getPrefix();
-
-        postfix_list = nullptr; // Prevent the local pointer from being deleted at the end
-
-        expression_tree = nullptr; // Prevent the local pointer from being deleted at the end
+                // --- SUCCESS --- 
 
 
 
-        // Mostrar el resultado
+                // Only if evaluation is successful, we update the last valid postfix list.
 
-        stream.write("ans -> " + format_result(result));
+
+
+                clearLastPostfixList(); // Delete the old one
+
+
+
+                clearLastExpressionTree(); // Clear previous tree
+
+
+
+                this->last_postfix_list = postfix_list; // Take ownership of the new one
+
+
+
+                this->last_expression_tree = expression_tree; // Store the tree
+
+
+
+                this->last_prefix_expr = expression_tree->getPrefix();
+
+
+
+                postfix_list = nullptr; // Prevent the local pointer from being deleted at the end
+
+
+
+                expression_tree = nullptr; // Prevent the local pointer from being deleted at the end
+
+
+
+        
+
+
+
+                // Mostrar el resultado
+
+
+
+                stream.write("ans -> " + format_result(result));
 
 
 
